@@ -49,7 +49,6 @@ const disconnect = VM.observe(document.body, () => {
 			let elem = getItem(soundElements[i]);
 
 			soundItems.push(elem);
-			// console.log(elem);
 			addButton(elem);
 			// console.log(`${url} ${par} -> ${link} \n ${txt}`)
 		}
