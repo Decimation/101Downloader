@@ -6,6 +6,8 @@
 // @author      Decimation
 // @description 8/13/2024, 11:37:18 PM
 // @grant GM_addElement
+// @grant GM_registerMenuCommand
+// @grant GM_download
 // @run-at document-end
 // @require https://cdn.jsdelivr.net/npm/@violentmonkey/dom@2
 // ==/UserScript==
@@ -42,8 +44,15 @@ function addButton(element) {
 
 const disconnect = VM.observe(document.body, () => {
 	const soundElements = document.querySelectorAll("span[id*='soundPlayer']");
+	let soundItems = [];
+
+	GM_registerMenuCommand('Download All', () => {
+		soundItems.forEach(element => {
+			GM_download(element.audioSrc, element.txt + '.mp3');
+		});
+	});
+
 	if (soundElements) {
-		let soundItems = [];
 
 		for (let i = 0; i < soundElements.length; i++) {
 			let elem = getItem(soundElements[i]);
